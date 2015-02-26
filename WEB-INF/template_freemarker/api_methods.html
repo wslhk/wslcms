@@ -1,0 +1,103 @@
+<!DOCTYPE HTML><!--api_methods.html-->
+<html>
+	<head>
+		<title>海丰 - API</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<#include "api_head.html"/>
+        
+				</head>
+<body>
+
+
+	
+	<!--header begin-->
+	<#include "api_header.html"/>
+
+	<!--header end-->
+<#include "api_seller.html"/>
+<ul class="SearchOptions">
+	<li t="api">API</li>
+	<li t="doc">文档</li>
+	<li t="qa">问答</li>
+</ul>
+
+	<!--api detail-->
+<!--面包屑 begin-->
+<div class="crumbs">
+			<!--<a href="http://open.taobao.com/doc/index.htm">文档中心</a>
+					<a  href="http://open.taobao.com/doc/category_list.htm?id=20">开发文档</a>-->
+					<a class="last" href="index.html">API文档</a>
+			</div>
+<!--面包屑 end-->
+
+<div class="container grid-s165m0 layout">
+	<!--正文区 begin-->
+	<div class="col-main bg_line">
+		<div class="main-wrap">
+			<h1 class="title">列表API</h1>
+			<p class="title-intro">
+			提供了用户基本信息查询功能
+
+			</p>
+							<div class="sub-wrap">
+
+					<h3 class="head-title">数据结构列表</h3>
+					<div class="api-list">
+                    
+                    <#list listBean as bean>
+					<p>
+							<span class="l">
+								<a class="link" href="${bean.className}.html" title="UserCredit">${bean.className}</a>
+							</span>
+							<span>${bean.intro}</span>
+					</p>
+                    </#list>      
+                            
+						</div>
+				</div>
+						<div class="sub-wrap">
+
+				<h3 class="head-title">API列表</h3>
+				<div class="api-list">
+                <#list listMethod as method>
+				  <p>
+						<span class="l">
+							<s class="open-bg"></s>
+							<a class="link" target="_blank" href="${method.type.simpleName}.html" title="${method.type.name}">${method.method}</a>
+					</span>
+						<span>${method.name}</span>
+					</p>
+                   </#list></div>
+			</div>
+					</div>
+	</div>
+	<!--正文区 end-->
+	<!--左侧导航栏 begin-->
+<div class = "col-sub">
+	<div class="api api-scrollbar">
+		<ul class="APIgory">
+
+			<li>
+								<div class="APIgory-title">
+					<a href = "apitype.html" title="API文档">返回&nbsp;<span class = "APIgory-sub-title">API分类</span></a>
+<a href = "api_exception.html" title="错误代码表"><span class = "APIgory-sub-title">错误代码表</span></a>    
+                    
+                    
+				</div>
+							</li>
+						
+					
+
+					</ul>
+	</div>
+</div>
+<!--左侧导航栏 end-->
+</div>
+
+	<!--footer begin-->
+	<#include "api_footer.html"/>
+<!--footer end-->
+
+</body>
+</html>

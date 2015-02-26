@@ -1,0 +1,269 @@
+<!DOCTYPE HTML><!--api_method_bean.html-->
+<html>
+<head>
+<title>海丰 - API详情</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<#include "api_head.html"/>
+
+</head>
+<body>
+
+
+
+	<!--header begin-->
+	<#include "api_header.html"/>
+	<!--header end-->	
+	<#include "api_seller.html"/>
+		<!--面包屑 begin-->	
+	<div class="crumbs">
+
+				
+		<a href="index.html">API文档</a>
+		
+			 <!--class with "last"-->		
+	</div>
+	<!--面包屑 end-->
+	
+	
+	
+	<div class = 'container grid-s165m0 layout'>
+
+		<!--正文区 begin-->
+		<div class = "col-main bg_line">
+			<div class = "main-wrap">
+				<div class = "title-wrap">
+					<h1 class = "open-bg title">${field.method} ${field.name} 
+																		
+					</h1>  
+					
+					<ul class= "api-sub-title layout clearfix">
+						<li class = "sub-title"><a class = "link" href = "#authorize">API用户授权类型</a></li>
+						<li class = "sub-title"><a class = "link" href = "#sys-param">系统级输入参数</a></li>
+
+						<li class = "sub-title"><a class = "link" href = "#api-param">应用级输入参数</a></li>
+						<li class = "sub-title"><a class = "link" href = "#result">返回结果</a></li>
+						<li class = "sub-title"><a class = "link" href = "#example">返回示例</a></li>
+						<li class = "sub-title"><a class = "link" href = "#error-code">错误码</a></li>
+						<li class = "sub-title"><a class = "link" href = "#API-tools">API工具</a></li>
+						<li class = "sub-title last"><a class = "link" href = "#FAQ">FAQ</a></li>
+
+					</ul>
+				</div>
+
+	
+		
+						
+						<p class = "title-intro">
+
+						${field.intro}
+						</p>
+						<div class="content-first">
+							<h2 class = "head-title" id="authorize">API用户类型授权</h2>
+							<p class = "introduction">
+															可选
+						  </p>
+						</div>
+						
+						
+						
+					  <div>
+
+						<h2 class = "head-title" id="sys-param">系统级别输入参数</h2>
+						  <table class = "api-table" cellspacing = '0'>
+							  <thead>
+								  <tr>	
+									  <th class = "middle" width="15%">名称</th>	
+									  <th class = "middle" width="15%">类型</th>	
+									  <th class = "middle" width="15%">是否必须</th>	
+									  <th class = "left" width="55%">描述</th>	
+								  </tr>
+
+							  </thead>
+							  <tbody>
+<#assign i = 0 ><#list basefields as field>									<tr <#if i%2==0>class="odd"</#if><#if i%2!=0>class="even"</#if>>
+									  <td class = "middle">${field.name}</td>
+										<td class = "middle">${field.className}</td>
+										<td class = "middle"><#if field.isMust==true>必须</#if>
+<#if field.isMust==false>否</#if></td>
+										<td class = "left">${field.intro}</td>
+
+									</tr>
+<#assign i = i+1 ></#list>
+							  </tbody>
+						  </table>
+					  </div>
+					  <div>
+						<h2 class = "head-title" id="api-param">应用级输入参数</h2>
+							<table class = "api-table" cellspacing = '0'>
+								<thead>
+
+									<tr>	
+										<th width="15%" class = "middle">名称</th>
+										<th width="10%" class = "middle">类型</th>
+										<th width="10%" class = "middle">是否必须</th>
+										<th width="15%" class = "left">示例值</th>
+										<th width="10%" class = "left">默认值</th>
+										<th width="40%" class = "left">描述</th>
+
+									</tr>
+								</thead>
+								<tbody><#assign i = 0 ><#list fields as field>									
+
+																														<tr   <#if i%2==0>class="odd"</#if><#if i%2!=0>class="even"</#if>>
+											<td class = "middle">${field.name}</td>
+											<td class = "middle">
+																																	<a href="${field.type.simpleName?replace('[','')?replace(']','')}.html" target="_blank">${field.className}</a>
+											</td>
+
+											<td class = "middle"><#if field.isMust==true>必须</#if>
+<#if field.isMust==false>否</#if></td>
+											<td class = "left">${field.demo}</td>
+											<td class = "left"></td>
+											<td class = "left">
+												${field.intro}
+											  </td>
+									
+									</tr>
+	<#assign i = i+1 ></#list>
+																																		</tbody>
+							</table>
+					  </div>
+
+						<div>
+							<h2 class = "head-title" id="result">返回结果</h2>
+							<table class = "api-table" cellspacing = '0'>
+								<thead>
+									<tr>	
+										<th width="20%"  class = "left">名称</th>
+										<th width="15%" class = "middle">类型</th>
+										<th width="15%" class = "middle">是否必须</th>
+
+										<th width="20%" class = "left">示例值</th>
+										<th width="30%" class = "left">描述</th>
+									</tr>
+								</thead>
+								<tbody>
+<#assign i = 0 ><#list respfields as field>																										<tr <#if i%2==0>class="odd"</#if><#if i%2!=0>class="even"</#if>>
+											<td class = "left">${field.name}
+											  </td>
+
+											<td class = "middle">
+																										<a href="${field.type.simpleName?replace('[','')?replace(']','')}.html">${field.className}</a>
+											  </td>
+											<td class = "middle">
+<#if field.isMust==true>必须</#if>
+<#if field.isMust==false>否</#if>
+											  </td>
+											<td class = "middle"></td>
+											<td class = "left">${field.intro}</td>
+
+										</tr>
+<#assign i = i+1 ></#list>																									</tbody>
+							</table>
+						</div>
+						<div>
+							<h2 class = "head-title " id="example">返回示例</h2>
+							<p class="data-format">XML数据格式:</p>
+							<div class = "img-wrap">
+
+								<!-- xml刷-->
+								<pre class="brush: xml;">xml</pre>
+
+							</div>
+							
+							<p class="data-format">JSON数据格式:</p>
+							<div class = "img-wrap">
+							   <!-- JS刷-->
+								<pre class="brush: js;">json</pre>
+
+							</div>
+						
+						</div>
+					  <div>
+						<h2 class = "head-title" id="error-code">错误码</h2>
+														
+													  <table class = "api-table" cellspacing = '0'>
+								<thead>
+									<tr>	
+										<th class = "left" width="30%">错误码</th>	
+										<th class = "left" width="30%">错误描述</th>
+
+										<th class = "left" width="40%">解决方案</th>	
+									</tr>
+								</thead>
+								<tbody>
+											                            		                            <tr  class="odd" >
+		                                  <td class = "left">--</td>
+		                                  <td class = "left">--</td>
+										  <td class = "left">--</td>
+
+		                            </tr>
+                       								    </tbody>
+						  </table>
+					  </div>
+						<div class="API-tools">
+
+							<h2 class = "head-title" id="API-tools">API工具</h2>
+							<div class= "tools-wrap">
+								<a class="tool-test" href = "${field.method}_m.html"></a>
+							<!--	<a class="tool-sdk" href="/apidoc/apiSample.htm?apiId=1" target="_blank"></a>-->
+							</div>
+						</div>
+					  <div>
+						<h2 class = "head-title" id="FAQ">FAQ</h2>
+
+													  <table class = "api-table" cellspacing = '0'>
+								<thead></thead>
+						  </table>
+					  </div>	
+				  </div>
+					<!-- ued div end-->
+				</div>
+			
+		
+		<!--正文区 end-->
+
+		<!--左侧导航栏 begin-->
+		<div class = "col-sub">
+			<div class="APIgory">
+				<ul>
+					<li>
+						<div class= "APIgory-title" >
+							<a href="apitype${apitype.id}.html">返回&nbsp;<span class="APIgory-sub-title"> ${apitype.name}</span></a>
+
+						</div>
+					</li>
+                    
+																																																															
+         <#list othermethods as method>
+         <li>
+						<div class= "APIgory-list <#if method.name==field.name>focus</#if> " onclick="location.href='${method.type.simpleName}.html';">
+							<div class= "APIgory-content">
+								<a class= "link APIgoryItem title-overflow" href = "${method.type.simpleName}.html" title="${method.method}">${method.method}</a>
+								<p class = "APIgory-intro info-overflow">${method.name}</p>
+							</div>
+
+							<s></s>
+						</div>
+					</li>
+         </#list>           
+                    </ul>
+				<div class="quick-api">
+					<a href="apitype.html">API文档</a>
+				</div>
+
+			</div>
+		</div>
+		<!--左侧导航栏 end-->
+	</div>
+	
+
+
+	
+	<!--footer begin-->
+		<#include "api_footer.html"/>
+
+</body>
+</html>

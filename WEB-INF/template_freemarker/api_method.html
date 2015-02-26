@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>海丰 - API测试工具</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<#include "api_head.html"/>
+
+
+<!--- api tools专用 -->
+
+<script type="text/javascript" src="../js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="../js/api/api_method.js"></script>
+</head>
+
+<body>
+
+
+	<!--header begin-->
+	<#include "api_header.html"/>
+	<!--header end-->	
+	<#include "api_seller.html"/>
+	
+		<div class="maincontent">
+
+			<table style="border-collapse:collapse; border-spacing:0;width:1000px;">
+				<tr style="height:40px;">
+					<td colspan="2">
+						<span style="float: left;">
+							<a href="index.html" target="_blank" style="color:blue">API文档</a>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="${field.type.simpleName}.html" target="_blank" style="color:blue;">API方法属性</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="api_exception.html" target="_blank" style="color:blue;">错误代码表</a>                        
+                            
+						</span>
+
+						<span style="float:right;">
+							<a href="#" target="_blank" style="text-decoration:underline"> 查看测试环境公用账号</a>
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">
+                    <h3>${field.name}${field.method}</h3>
+                    <div>${field.intro}</div>
+                    <form action="../interface.action" id="form_method" enctype="multipart/form-data" method="post">
+						<table border="0" cellpadding="0" cellspacing="0">
+
+							<tbody>
+								<tr>
+								  <td>
+									 
+									  <table class="parameters" width="500" border="0" cellpadding="4" cellspacing="0">
+										  <tbody>
+											
+											  <tr>
+												  <td align="right">提交方式：</td>
+												  <td><input type="radio" name="sip_http_method" value="post" checked=""> POST　<input type="radio" name="sip_http_method" value="get"> GET</td>
+                                                  
+                                                  
+
+										    </tr>
+                                               <tr>
+												  <td align="right">方法类型：</td>
+												  <td>
+<#list apitypes as type>
+	<a href="javascript:apiTypeSelect('${type.id}');">${type.name}</a>
+</#list>
+                                                  </td>
+                                                  
+                                                  
+
+											  </tr>
+                                              <tr>
+												  <td align="right">请选择：</td>
+												  <td>
+<div id="divApiType"></div>
+                                                  </td>
+                                                  
+                                                  
+
+											  </tr>
+ 
+<#list basefields as field>
+                                              <tr>
+												  <td align="right">${field.name}:
+                                                  
+                                                  </td>
+												  <td>
+ <span class="l">   
+               <#if field.type=='class java.lang.Enum'>
+               <select style="width:195px;" name="${field.name}">
+               	<#list field.value as item>
+                	<option value="${item}">${item}</option>
+                </#list>
+               </select>                                   
+                </#if>
+                <#if field.type!='class java.lang.Enum'>                 <input type="text" id="${field.name}" name="${field.name}" value="${field.defaultValue}" ismust="<#if field.isMust>true</#if>" style="width:190px;">
+                </#if>
+   </span>             
+                &nbsp;<#if field.isMust==true><span class="point-red">*</span></#if><a href="javascript:void(0)" title="${field.intro}" onclick="alert('${field.intro}');">说明</a></td>
+											  </tr>
+</#list>			
+<#list fields as field>
+                                              <tr>
+												  <td align="right">${field.name}：</td>
+												  <td>
+    <#if field.type=='class java.io.File'>
+    <input type="file" id="${field.name}" name="${field.name}" value="${field.defaultValue}" style="width:190px;" isMust="<#if field.isMust>true</#if>" oneMust="${field.oneMust}">
+    </#if>     
+    <#if field.type!='class java.io.File'>
+         <span class="l"><input type="text" id="${field.name}" name="${field.name}" value="${field.defaultValue}" style="width:190px;" isMust="<#if field.isMust>true</#if>" oneMust="${field.oneMust}"></span>
+       </#if>  
+         &nbsp;<#if field.isMust==true><span class="point-red">*</span></#if>
+    <#if field.oneMust!=''><span class="point-blue">*</span></#if>     
+         <a href="javascript:void(0)" title="${field.intro}" onclick="alert('${field.intro}');">说明</a></td>
+											  </tr>
+</#list>
+
+
+                                              
+										  </tbody>
+									  </table>
+									</td>
+
+								</tr>
+								<tr>
+									<td> <span id="ParamDiv"></span></td>
+								</tr>
+								<tr>
+									<td>
+										<table width="500" border="0" cellpadding="4" cellspacing="0">
+											<tbody>
+
+												<tr>
+													<td width="160">&nbsp;</td>
+													<td width="340" align="left">
+														<input type="button" value="提交测试" onclick="submits();" style="width:60px;height:24px;*padding-top:3px;border:#666666 1px solid;cursor:pointer">
+														<!--<span id="bindUrlSpan" style=""><input type="button" value="绑定用户" onclick="bindUser();" onfocus="blur();" style="width:60px;height:24px;*padding-top:3px;border:#666666 1px solid;cursor:pointer;"></span>-->
+													</td>
+												</tr>
+											</tbody>
+										</table>
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+                    </td>
+					<td valign="top">
+						提交参数：
+						<br>
+						<textarea name="param" id="param" cols="90" rows="5" readonly style="font-family:Tahoma,Helvetica,Arial,'宋体',sans-serif;font-size:12px;line-height:20px;"></textarea>
+
+						<br>
+						<br>
+						返回结果：
+						<br>
+						<textarea name="resultShow" id="resultShow" cols="90" rows="10" readonly style="font-family:Tahoma,Helvetica,Arial,'宋体',sans-serif;font-size:12px;line-height:20px;"></textarea>
+						<br />
+						<br />
+						
+					</td>
+				</tr>
+				<tr></tr>
+			</table>
+		</div>
+			
+	
+	
+	<!--footer begin-->
+    <#include "api_footer.html"/>
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>淘宝开放平台 - 文档中心 -  开发文档 -  API文档    - 用户API</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="shortcut icon" href="http://www.taobao.com/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="http://a.tbcdn.cn/??p/header/header-min.css,tbsp/tbsp.css" />
+		<link rel="stylesheet" href="http://a.tbcdn.cn/apps/isvportal/css/reset.css?t=20110913.css" />
+		<link rel="stylesheet" href="http://a.tbcdn.cn/apps/isvportal/css/common.css?t=20110913.css" />
+
+		<link rel="stylesheet" href="http://a.tbcdn.cn/apps/isvportal/css/header.css?t=20110913.css" />
+		<link rel="stylesheet" href="http://a.tbcdn.cn/apps/isvportal/css/docmtCenter.css?t=20111206.css" />
+		<script type="text/javascript" src = "http://a.tbcdn.cn/s/kissy/1.2.0/kissy.js"></script>
+		<script type="text/javascript" src="http://a.tbcdn.cn/p/header/header-v8-min.js"></script>
+		<script type="text/javascript" src = "http://a.tbcdn.cn/apps/isvportal/js/judge.js"> </script>
+		<script type="text/javascript" src = "http://a.tbcdn.cn/apps/isvportal/js/router.js?20111206.js"></script>
+		<!--自动客户-->
+
+		<script src="http://a.tbcdn.cn/tbra/1.0/tbra-aio.js" charset="gbk"></script>
+				</head>
+<body>
+<script type="text/javascript">
+(function (d) {
+var ta=d.createElement("script");ta.type="text/javascript";ta.async=true;ta.id="tb-beacon";
+ta.setAttribute("exparams","category=&userid=&tid=2248c70bfa572e795628a669385dd899&channel=112&&stats_show=");
+ta.src=("https:"==d.location.protocol?"https://s":"http://a")+".tbcdn.cn/s/atp.js";
+d.getElementsByTagName("head")[0].appendChild(ta);
+})(document);
+</script>
+
+<script type="text/javascript">
+(function (d) {
+var ta=d.createElement("script");ta.type="text/javascript";ta.async=true;ta.id="tb-beacon-ac";
+ta.setAttribute("exparams","category=&userid=&channel=112&&stats_show=");
+ta.src=("https:"==d.location.protocol?"https://s":"http://a")+".tbcdn.cn/s/ac.js";
+d.getElementsByTagName("head")[0].appendChild(ta);
+})(document);
+</script>
+
+	<div style="display:none">
+	<script type="text/javascript" src="http://js.tongji.linezing.com/2581747/tongji.js"></script>
+
+	<noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2581747/tongji.gif"/></a></noscript>
+</div>
+	<!--header begin-->
+	<div id="header">
+		<!--site nav begin-->
+		<div id="site-nav">
+			<p class="login-info">
+						<script>TB.Header.writeLoginInfo({"memberServer": "http://member1.taobao.com","loginServer": "https://login.taobao.com"});
+								</script>
+
+			</p>
+
+			<ul class="quick-menu">
+				<li><a target="_top" href="http://www.taobao.com">淘宝网首页</a></li>
+				<li class="mytaobao menu-item">
+					<div class="menu">
+						<a rel="nofollow" target="_top" href="http://i.taobao.com/my_taobao.htm" class="menu-hd">我的淘宝<b></b></a>
+						<div class="menu-bd menu-bd-item">
+
+							<div class="menu-bd-panel">
+								<div>
+
+									<a rel="nofollow" target="_top" href="http://trade.taobao.com/trade/itemlist/list_bought_items.htm" class="main">已买到的宝贝</a>
+									<a rel="nofollow" target="_top" href="http://trade.taobao.com/trade/itemlist/list_sold_items.htm" class="main">已卖出的宝贝</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</li>
+    			<li><a href="http://blog.open.taobao.com/" target="_top">博客</a><a href="http://open.taobao.com/bbs/forum.php" target="_top">论坛</a></li>
+    			<li><a target="_top" href="http://my.open.taobao.com/mall/index.htm">商家接入</a></li>
+    			<li class="last"><a href="http://my.open.taobao.com/" target="_top">开发者中心</a></li>
+			</ul>
+		</div>
+
+		<script type="text/javascript">TB.Header.init();</script>
+		<!--site nav end-->
+	</div>
+
+	<!--header end-->
+<div class="seller">
+	<div id="page">
+		<div class="clearfix" id="pageNav">
+			<h1 id="toplogo">
+
+				<a href="http://open.taobao.com"><img title="淘宝开放平台" alt="淘宝开放平台" src="http://img01.taobaocdn.com/tps/i1/T1R6l9XkVvXXXXXXXX-238-39.jpg"></a>
+			</h1>
+			<h1 id="topmenu">
+				<a href="/index.htm">首页</a>
+				<a href="/openBusi.htm">开放业务</a>
+				<a href="/appAccess.htm">应用接入</a>
+				<a href="/doc/index.htm">文档中心</a>
+
+								<a href="/support/index.htm" class="">支持中心</a>
+								<s></s>
+			</h1>
+			<div id="search">
+				<div class="default">
+					<span class="initText">请输入您要搜索的内容</span>
+					<span class="curOption" t="doc">文档</span>
+
+				</div>
+				<div class="actived">
+					<input type="text" class="searchText" id="searchText"/>
+					<span class="curOption" t="doc">文档</span>
+					<a class="sBtn" href="#"></a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<ul class="SearchOptions">
+	<li t="api">API</li>
+	<li t="doc">文档</li>
+	<li t="qa">问答</li>
+</ul>
+<input type="hidden" name="suggest" id="suggestUrl" value="http://open.taobao.com/search/suggest.do">
+<input type="hidden" name="search" id="searchUrl" value="http://open.taobao.com/search/searcher.htm">
+<script>
+	function searchBottonClick(){
+		if(document.getElementById('q').value == '请输入关键词'){
+			return false;
+		}else{
+			document.getElementById("google-search-box").submit();
+		}
+	}
+
+</script>
+	<!--api detail-->
+<!--面包屑 begin-->
+<div class="crumbs">
+			<a href="http://open.taobao.com/doc/index.htm">文档中心</a>
+					<a  href="http://open.taobao.com/doc/category_list.htm?id=20">开发文档</a>
+					<a class="last" href="http://open.taobao.com/doc/category_list.htm?id=102">API文档</a>
+			</div>
+<!--面包屑 end-->
+
+<div class="container grid-s165m0 layout">
+	<!--正文区 begin-->
+	<div class="col-main bg_line">
+		<div class="main-wrap">
+			<h1 class="title">用户API</h1>
+			<p class="title-intro">
+			提供了用户基本信息查询功能
+
+			</p>
+							<div class="sub-wrap">
+
+					<h3 class="head-title">数据结构列表</h3>
+					<div class="api-list">
+													<p>
+							<span class="l">
+								<a class="link" href="http://api.taobao.com/apidoc/dataStruct.htm?path=cid:1-dataStructId:1" title="UserCredit">UserCredit</a>
+							</span>
+							<span>用户信用</span>
+
+							</p>
+													<p>
+							<span class="l">
+								<a class="link" href="http://api.taobao.com/apidoc/dataStruct.htm?path=cid:1-dataStructId:2" title="Location">Location</a>
+							</span>
+							<span>用户地址</span>
+							</p>
+													<p>
+
+							<span class="l">
+								<a class="link" href="http://api.taobao.com/apidoc/dataStruct.htm?path=cid:1-dataStructId:3" title="User">User</a>
+							</span>
+							<span>用户</span>
+							</p>
+											</div>
+				</div>
+						<div class="sub-wrap">
+
+				<h3 class="head-title">API列表</h3>
+				<div class="api-list">
+											<p>
+						<span class="l">
+							<s class="open-bg"></s>
+							<a class="link" href="http://api.taobao.com/apidoc/api.htm?path=cid:1-apiId:1" title="taobao.user.get">taobao.user.get</a>
+																				</span>
+						<span>获取单个用户信息</span>
+
+						</p>
+											<p>
+						<span class="l">
+							<s class="open-bg"></s>
+							<a class="link" href="http://api.taobao.com/apidoc/api.htm?path=cid:1-apiId:2" title="taobao.users.get">taobao.users.get</a>
+																				</span>
+						<span>获取多个用户信息</span>
+						</p>
+
+									</div>
+			</div>
+					</div>
+	</div>
+	<!--正文区 end-->
+	<!--左侧导航栏 begin-->
+<div class = "col-sub">
+	<div class="api api-scrollbar">
+		<ul class="APIgory">
+
+			<li>
+								<div class="APIgory-title">
+					<a href = "http://open.taobao.com/doc/category_list.htm?id=102" title="API文档">返回&nbsp;<span class = "APIgory-sub-title">API文档</span></a>
+				</div>
+							</li>
+						<li >
+				<p class= "APIgory-list focus">
+					<a class= "link info-overflow" title="用户API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=1&category_id=102">
+
+						用户API
+					</a>
+				</p>
+				<s></s>			</li>
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="类目API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=3&category_id=102">
+						类目API
+					</a>
+
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="商品API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=4&category_id=102">
+						商品API
+					</a>
+				</p>
+							</li>
+
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="交易API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=5&category_id=102">
+						交易API
+					</a>
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+
+					<a class= "link info-overflow" title="评价API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=6&category_id=102">
+						评价API
+					</a>
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="物流API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=7&category_id=102">
+						物流API
+					</a>
+
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="店铺API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=9&category_id=102">
+						店铺API
+					</a>
+				</p>
+							</li>
+
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="分销API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=15&category_id=102">
+						分销API
+					</a>
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+
+					<a class= "link info-overflow" title="淘画报API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=16&category_id=102">
+						淘画报API
+					</a>
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="旺旺API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=18&category_id=102">
+						旺旺API
+					</a>
+
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="淘客API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=38&category_id=102">
+						淘客API
+					</a>
+				</p>
+							</li>
+
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="主动通知业务API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=39&category_id=102">
+						主动通知业务API
+					</a>
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+
+					<a class= "link info-overflow" title="系统API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=40&category_id=102">
+						系统API
+					</a>
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="物流宝API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=41&category_id=102">
+						物流宝API
+					</a>
+
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="信息安全API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=42&category_id=102">
+						信息安全API
+					</a>
+				</p>
+							</li>
+
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="收藏夹API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=10058&category_id=102">
+						收藏夹API
+					</a>
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+
+					<a class= "link info-overflow" title="营销API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=10083&category_id=102">
+						营销API
+					</a>
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="淘花API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=10084&category_id=102">
+						淘花API
+					</a>
+
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="酒店API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=10099&category_id=102">
+						酒店API
+					</a>
+				</p>
+							</li>
+
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="聚划算API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=10101&category_id=102">
+						聚划算API
+					</a>
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+
+					<a class= "link info-overflow" title="店铺会员管理API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=10102&category_id=102">
+						店铺会员管理API
+					</a>
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="无线画报API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=10118&category_id=102">
+						无线画报API
+					</a>
+
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="多媒体平台API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=10122&category_id=102">
+						多媒体平台API
+					</a>
+				</p>
+							</li>
+
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="子账号管理API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=10123&category_id=102">
+						子账号管理API
+					</a>
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+
+					<a class= "link info-overflow" title="在线订购API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=10124&category_id=102">
+						在线订购API
+					</a>
+				</p>
+							</li>
+						<li >
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="退款API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=10125&category_id=102">
+						退款API
+					</a>
+
+				</p>
+							</li>
+						<li class="list-last">
+				<p class= "APIgory-list ">
+					<a class= "link info-overflow" title="掌柜说API" href="http://open.taobao.com/doc/api_cat_detail.htm?cat_id=10139&category_id=102">
+						掌柜说API
+					</a>
+				</p>
+							</li>
+
+					</ul>
+	</div>
+</div>
+<!--左侧导航栏 end-->
+</div>
+
+	<!--footer begin-->
+	<div id="footer">
+		<div class="ali-group clearfix">
+			<div class="clearfix groupList">
+				<p><a href="http://open.taobao.com/doc/category_list.htm?id=19">平台介绍</a></p>
+
+				<ul>
+					<li><a href="http://open.taobao.com/doc/detail.htm?id=73">平台简介</a></li>
+					<li><a href="http://open.taobao.com/doc/detail.htm?id=69">开放业务</a></li>
+					<li><a href="http://open.taobao.com/doc/category_list.htm?id=26">应用类型</a></li>
+				</ul>
+				<ul>
+					<li><a href="http://open.taobao.com/doc/detail.htm?id=71">盈利模式</a></li>
+
+					<li><a href="http://open.taobao.com/doc/detail.htm?id=72">成功案例</a></li>
+				</ul>
+			</div>
+			
+			<div class="clearfix groupList">
+				<p><a href="http://open.taobao.com/doc/category_list.htm?id=20">开发文档</a></p>
+				<ul>
+					<li><a href="http://open.taobao.com/doc/category_list.htm?id=29">新手指南</a></li>
+
+					<li><a href="http://open.taobao.com/doc/api_list.htm?id=102">API文档</a></li>
+					<li><a href="http://open.taobao.com/doc/category_list.htm?id=31">基础篇</a></li>
+				</ul>
+				<ul>
+					<li><a href="http://open.taobao.com/doc/category_list.htm?id=32">实战篇</a></li>
+					<li><a href="http://open.taobao.com/doc/category_list.htm?id=33">进阶篇</a></li>
+					<li><a href="http://open.taobao.com/doc/category_list.htm?id=34">设计规范</a></li>
+
+				</ul>
+			</div>
+			<div class="clearfix groupList">
+				<p><a href="http://open.taobao.com/doc/category_list.htm?id=21">规则中心</a></p>
+				<ul>
+					<li><a href="http://open.taobao.com/doc/category_list.htm?id=41">业务接入</a></li>
+					<li><a href="http://open.taobao.com/doc/category_list.htm?id=49">应用审核</a></li>
+
+					<li><a href="http://open.taobao.com/doc/category_list.htm?id=54">运营规范</a></li>
+				</ul>
+				<ul>
+					<li><a href="http://open.taobao.com/doc/category_list.htm?id=58">违规</a></li>
+                                        <li><a href="http://open.taobao.com/doc/detail.htm?id=50">服务市场</a></li>
+                                        <li><a href="http://open.taobao.com/doc/category_list.htm?id=65">分成结算</a></li>
+						</ul>
+
+			</div>
+			
+			<div class="clearfix groupList">
+				<p><a href="http://open.taobao.com/doc/category_list.htm?id=22">常见问题</a></p>
+				<ul>
+					<li><a href="http://open.taobao.com/doc/category_list.htm?id=35">开发相关</a></li>
+					<li><a href="http://open.taobao.com/doc/category_list.htm?id=36">规则相关</a></li>
+					<li><a></a></li>
+
+				</ul>
+			</div>
+			
+			<div class="clearfix groupList last">
+				<p>联系我们</p>
+				<ul>
+					<li>电子邮箱&nbsp;&nbsp;top@taobao.com</li>
+				</ul>
+
+			</div>
+			
+		</div>
+		<div id="copyright">Copyright &copy; 2003-2012 Taobao.com 版权所有</div>
+	</div>
+<!--footer end-->
+<script>
+KISSY.ready(function(S){
+      S.use('searchsuggest', function(S,searchsuggest){
+         new searchsuggest();
+      });
+   });
+</script>
+<script type="text/javascript" src="http://toptrace.taobao.com/assets/getAppKey.js" topappkey="12406011" defer="defer"></script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+<select onchange="location.href=this.value">
+<option>请选择</option>
+<#list listtype as type>
+<option value="${type.method}_m.html">${type.method} - ${type.name}</option>
+</#list>
+</select>

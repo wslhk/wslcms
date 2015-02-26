@@ -1,0 +1,132 @@
+<#assign i = 0 ><!DOCTYPE HTML><!--api_object.html-->
+<html>
+<head>
+<title>海丰 - API详情</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="=/favicon.ico" type="image/x-icon">
+<#include "api_head.html"/>
+</head>
+<body>
+
+
+
+
+	<!--header begin-->
+	<#include "api_header.html"/>
+	<!--header end-->	
+	<#include "api_seller.html"/>
+		<!--面包屑 begin-->	
+	<div class="crumbs">
+
+		<a href="index.html">文档中心</a>			
+		<a class="last" href="#">${classfield.className}</a>	 <!--class with "last"-->		
+	</div>
+	<!--面包屑 end-->
+	
+	
+	
+	<div class = 'container grid-s165m0 layout'>
+
+		<!--正文区 begin-->
+		<div class = "col-main bg_line">
+			<div class = "main-wrap">
+				<div class = "title-wrap">
+					<h1 class = "title">${classfield.className}
+				  </h1>  
+				</div>
+
+				<div class="api-detail-bd" id="bd">
+					<!-- ued div start 不知何用-->
+
+					<div>
+						
+						<div class="content-first">
+							<h2 class = "head-title" id="">简要描述</h2>
+							<p class = "introduction">
+							${classfield.intro}
+							</p>
+						</div>
+						<h2 class = "api-content-title"><a name="testtool"></a></h2>
+					
+						
+						
+					  <div>
+
+						<h2 class = "head-title" id="">属性								
+						  </h2>
+						  <table class = "api-table" cellspacing = '0'>
+							  <thead>
+								  <tr>
+									  <th class = "left" width="20%">名称</th>
+	                          		  <th class = "middle" width="10%">类型</th>
+	                          		  <th class = "middle" width="10%">是否隐私</th>
+
+	                          		  <th class = "left" width="20%">示例值</th>
+	                          		  <th class = "left" width="40%">描述</th>
+								  </tr>
+							  </thead>
+							  <tbody>
+<#list listfield as field>																																		  <tr  <#if i%2==0>class="odd"</#if><#if i%2!=0>class="even"</#if> >
+										<td class = "left">${field.name}										
+																				</td>
+
+										<td class = "middle">${field.className}<a name="${field.className}"><a name="${field.className}[]"></td>
+										<td class = "middle">
+															                  	    否
+						                										</td>
+										<td class = "left">${field.demo}</td>
+										<td class = "left">${field.intro}</td>
+									
+								  </tr>
+<#assign i = i+1 ></#list>
+						    </tbody>
+						  </table>
+						</div>
+					</div>
+					<!-- ued div end-->
+				</div>
+			</div>
+		</div>
+
+		<!--正文区 end-->
+		<!--左侧导航栏 begin-->
+		<div class = "col-sub">
+			<div class="APIgory">
+				<ul>
+					<li>
+						<div class= "APIgory-title" >
+							<a href="index.html">返回&nbsp;<span class="APIgory-sub-title"> API</span></a>
+
+						</div>
+					</li>
+																																																												
+<#list otherobject as object>
+			<li>						
+						<div class= "APIgory-list ">
+							<div class= "APIgory-content">
+								<a class= "link APIgoryItem title-overflow" href = "${object.type.simpleName}.html" title="${object.type.simpleName}">${object.type.simpleName}</a>
+								<p class = "APIgory-intro info-overflow">${object.name}</p>
+						  </div>
+
+							<s></s>
+						</div>
+			</li>
+</#list>
+			  </ul>
+				<div class="quick-api">
+					<a href="index.html">API文档</a>
+				</div>
+
+			</div>
+		</div>
+	  
+	</div>
+	
+	<!--footer begin-->
+		<div id="footer">
+		  <div id="copyright">Copyright © 2003-2012  版权所有</div>
+</div>
+	 
+
+</body>
+</html>
