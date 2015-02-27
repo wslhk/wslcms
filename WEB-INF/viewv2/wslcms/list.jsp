@@ -94,12 +94,16 @@ ul.pagination{ margin:0;}
             <form  method="get"  action="?">
             
   <input type="hidden" name="wslobj" value="${wslobj}"/>
+  <div class="row">
+  <div class="col-sm-6">
   <select name="wslact">
     <option value="-1">请选择</option>
     <option value="batchEdit">批量编辑</option>
     <option value="del">批量删除</option>
   </select>
   <input type="submit" />
+  </div><div class="col-sm-6"></div>
+  </div>
               <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                 <th><input type="checkbox"/></th>
@@ -116,7 +120,11 @@ ul.pagination{ margin:0;}
                       <td><input type="checkbox" name="${line.objId.column}[]" value="${line.objId.value}"/></td>
                       <c:forEach items="${line.items}" var="item">
                         <td><c:if test="${item.itemType=='FILEIMG'}"> <img width="50" src="${wslconfig.file_url}/${item.value}"/> </c:if>
-                          ${item.value} </td>
+                          ${item.value} 
+                          
+                          
+                          
+                          </td>
                       </c:forEach>
                       <td><a href="?wslobj=${wslViewList.objName}&wslact=edit&${line.objId.column}=${line.objId.value}">编辑</a> <a href="?wslobj=${wslViewList.objName}&wslact=del&${line.objId.column}[]=${line.objId.value}">删除</a></td>
                     </tr>
@@ -175,7 +183,7 @@ ul.pagination{ margin:0;}
 <script src="${wslconfig.static_path}bower_components/metisMenu/dist/metisMenu.min.js"></script> 
 
 <!-- DataTables JavaScript --> 
-<script src="${wslconfig.static_path}bower_components/DataTables/media/js/jquery.dataTables.min.js"></script> 
+<script src="${wslconfig.static_path}bower_components/datatables/media/js/jquery.dataTables.min.js"></script> 
 <script src="${wslconfig.static_path}bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script> 
 
 <!-- Custom Theme JavaScript --> 
@@ -185,7 +193,10 @@ ul.pagination{ margin:0;}
 <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
-                responsive: true
+                responsive: true,
+				bPaginate:false,
+				oLanguage:{sInfo:''},
+				searching:false
         });
     });
     </script>

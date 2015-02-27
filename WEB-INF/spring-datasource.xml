@@ -13,7 +13,11 @@
                         <value>org.gjt.mm.mysql.Driver</value>
                 </property>
                 <property name="driverUrl">
+<<<<<<< .mine
                         <value>jdbc:mysql://localhost:3306/test?characterEncoding=utf8</value>
+=======
+                        <value>jdbc:mysql://192.168.1.110:3306/test?characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull</value>
+>>>>>>> .r29
                 </property>
                 <property name="user" value="root"/>
                 <property name="password" value="123456"/>

@@ -10,8 +10,12 @@ import org.hibernate.Transaction;
 import org.springframework.ui.ModelMap;
 
 
+
+import com.weisiliang.cms.annotation.ColumnWSL;
 import com.weisiliang.cms.annotation.TableWSL;
 import com.weisiliang.cms.exception.WSLCmsException;
+import com.weisiliang.cms.factory.ConfigWSL;
+import com.weisiliang.cms.inter.ItemType;
 
 
 public class CmsProcessDelDo extends CmsProcessBase implements CmsProcess{
@@ -40,6 +44,7 @@ public class CmsProcessDelDo extends CmsProcessBase implements CmsProcess{
 		for(String obj:objs){
 			
 			arg0=session.get(classobj,this.parseSer(field.getType(), obj));
+			this.removeFile(request, arg0);
 			session.delete(arg0);
 			
 			
@@ -56,6 +61,32 @@ public class CmsProcessDelDo extends CmsProcessBase implements CmsProcess{
 		modelMap.put("listTable", listTable);
 		modelMap.put("referer", request.getParameter("referer"));
 		modelMap.put("wslconfig", configwsl);
+	}
+	
+	private void removeFile(HttpServletRequest request,Object obj){
+		for (Field fieldsrc:obj.getClass().getDeclaredFields()){
+			
+		
+					if(fieldsrc.getAnnotation(ColumnWSL.class)==null){
+						continue;
+					}
+					try {
+						fieldsrc.setAccessible(true);
+	
+						
+						if(fieldsrc.getAnnotation(ColumnWSL.class).inputType()==ItemType.FILE
+							||fieldsrc.getAnnotation(ColumnWSL.class).inputType()==ItemType.FILEIMG
+						){
+						
+								this.remove(request, ConfigWSL.getMessage("file_path"), (String)fieldsrc.get(obj));
+							
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					} 
+				
+			
+		}
 	}
 	
 }

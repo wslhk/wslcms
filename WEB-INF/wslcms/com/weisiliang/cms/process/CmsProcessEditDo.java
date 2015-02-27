@@ -13,6 +13,8 @@ import org.springframework.ui.ModelMap;
 import com.weisiliang.cms.annotation.ColumnWSL;
 import com.weisiliang.cms.annotation.TableWSL;
 import com.weisiliang.cms.exception.WSLCmsException;
+import com.weisiliang.cms.factory.ConfigWSL;
+import com.weisiliang.cms.inter.ItemType;
 
 
 public class CmsProcessEditDo extends CmsProcessBase implements CmsProcess{
@@ -52,17 +54,28 @@ public class CmsProcessEditDo extends CmsProcessBase implements CmsProcess{
 					try {
 						fieldsrc.setAccessible(true);
 						fieldsearch.setAccessible(true);
+						
+						if(fieldsrc.getAnnotation(ColumnWSL.class).inputType()==ItemType.FILE
+							||fieldsrc.getAnnotation(ColumnWSL.class).inputType()==ItemType.FILEIMG
+						){
+							if(
+									fieldsrc.get(respObj)!=fieldsearch.get(obj)
+									&&(!fieldsrc.get(respObj).equals(fieldsearch.get(obj)))
+									
+									){
+								this.remove(request, ConfigWSL.getMessage("file_path"), (String)fieldsrc.get(respObj));
+							}
+						}
+						
 						if(fieldsearch.get(obj)!=null){
 							fieldsrc.set(respObj, fieldsearch.get(obj));
 //							if(fieldsrc.getType()==String.class){
 //								fieldsrc.set(respObj);
 //							}
 						}
-					} catch (IllegalArgumentException e) {
+					} catch (Exception e) {
 						e.printStackTrace();
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					}
+					} 
 				}
 			}
 		}

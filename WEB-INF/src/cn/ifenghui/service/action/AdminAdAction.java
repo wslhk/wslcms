@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,6 +31,8 @@ import com.weisiliang.cms.factory.CmsFactory;
 import com.weisiliang.cms.factory.CmsFactoryImpl;
 import com.weisiliang.cms.factory.CmsView;
 import com.weisiliang.cms.factory.ConfigWSL;
+import com.weisiliang.cms.inter.FileUploadProcess;
+import com.weisiliang.cms.upload.AliyunOSS;
 import com.weisiliang.cms.view.ViewList;
 
 import cn.ifenghui.service.dao.obj.Ad;
@@ -104,6 +108,11 @@ public class AdminAdAction extends BaseAction{
           ModelMap modelMap) throws Exception {
 		
 		CmsFactory fac=new CmsFactoryImpl(this.sessionFactory);
+		
+		//分布式文件存储-阿里云oss 例子
+		FileUploadProcess uploadProcess=new AliyunOSS(); 
+		fac.setFileUploadProcess(uploadProcess);
+		
 		CmsView viewPath=fac.cmsRun(request, response, modelMap);
 		return viewPath.getViewName();
   }

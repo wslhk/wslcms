@@ -1,11 +1,16 @@
 package cn.ifenghui.service.dao.obj;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 
 
+
+
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,6 +23,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.weisiliang.cms.annotation.ColumnWSL;
 import com.weisiliang.cms.annotation.TableWSL;
@@ -90,10 +96,22 @@ public class Ad {
 ////	@JoinColumn(name = "tagId",insertable=false,updatable=false) 
 ////	@ManyToOne(targetEntity=Tag.class)  
 //	private Integer tagId;
-	
+//	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@Column(updatable=false)
+	@ColumnWSL(name="创建时间",inputType=ItemType.DATE,targetEntity=Tag.class,defaultData=ColumnWSL.DefaultData.NORMAL)
+	private Date createTime;
 	
 
-//	@SelectWSL(columnName="type")
+	
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	//	@SelectWSL(columnName="type")
 	@Transient
 	private List<SelectItem> typeSelect=null;
 	

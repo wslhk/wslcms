@@ -29,7 +29,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+<link href="${wslconfig.static_path}timepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -129,6 +129,23 @@
 
 </c:if>          
      
+     <c:if test="${item.itemType=='DATE'}">
+                          
+    <c:if test="${item.annotation.defaultData()=='DATE_NOW'}">
+    <input type="text" value="系统时间" class="form-control" disabled/>
+    </c:if> 
+    <c:if test="${item.annotation.defaultData()=='NORMAL'}">
+    
+    
+                    <div class="input-group date form_datetime col-md-5" data-link-field="dtp_input1" data-date="${item.value}" data-date-format="yyyy-mm-dd hh:ii:ss">
+                        <input class="form-control" size="16" type="text" value="${item.value}"  readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                    </div>
+                    <input type="hidden" name="${item.column}" id="dtp_input1" value="${item.value}"  />
+    </c:if> 
+</c:if> 
+     
 </div>
     </c:forEach>
    <button type="submit" class="btn btn-default">Submit Button</button> 
@@ -166,7 +183,22 @@
     <script src="${wslconfig.static_path}dist/js/sb-admin-2.js"></script>
 
 
-
+<script src="${wslconfig.static_path}timepicker/bootstrap-datetimepicker.min.js"></script>
+<script>
+$('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+		//minView: 2,
+        showMeridian: 1//,
+		//format:'yyyy-mm-dd hh:ii:ss',
+		//initialDate:new Date()
+    });
+</script>
 </body>
 
 </html>

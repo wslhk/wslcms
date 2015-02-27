@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -16,8 +18,10 @@ import java.util.Set;
 
 import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.SessionFactory;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -25,16 +29,23 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 
 
+
+
+
+
 import com.weisiliang.cms.annotation.ColumnWSL;
 import com.weisiliang.cms.exception.WSLCmsException;
 import com.weisiliang.cms.factory.ConfigWSL;
+import com.weisiliang.cms.inter.FileUploadProcess;
 import com.weisiliang.cms.inter.ItemType;
 import com.weisiliang.cms.inter.UpFile;
 import com.weisiliang.cms.view.ViewTitle;
 
-public class CmsProcessBase {
+public class CmsProcessBase implements CmsProcess{
 	List<ViewTitle> listTable=new ArrayList<ViewTitle>();;
 	Map<String,String> configwsl=new HashMap<String,String>();
+	
+	
 	
 	public CmsProcessBase(){
 		Set<?> set=ConfigWSL.getProps().keySet();
@@ -52,6 +63,8 @@ public class CmsProcessBase {
 	
 //	@Autowired
 	SessionFactory sessionFactory=null;
+	
+	FileUploadProcess fileUploadProcess=null;
 	
 	public void setSessionFactory(SessionFactory sessionFactory){
 		this.sessionFactory=sessionFactory;
@@ -182,14 +195,14 @@ public class CmsProcessBase {
 			
 					
 				if(column.inputType()==ItemType.FILE||column.inputType()==ItemType.FILEIMG){
-//						List<MultipartFile> ms=this.getMultipartFiles(request, f.getName());
-						
-						files=this.upload(request, "_"+f.getName(), ConfigWSL.getMessage("file_path"));
-						if(files!=null&&files[0]!=null){
-							f.set(obj, files[0].getSavePath());
-//							return obj;
-							continue;
-						}
+//					List<MultipartFile> ms=this.getMultipartFiles(request, f.getName());
+					
+					files=this.upload(request, "_"+f.getName(), ConfigWSL.getMessage("file_path"));
+					if(files!=null&&files[0]!=null){
+						f.set(obj, files[0].getSavePath());
+//						return obj;
+						continue;
+					}
 				}else if(String.class.isAssignableFrom(f.getType())){
 					f.set(obj, val);
 				}else if(Integer.class.isAssignableFrom(f.getType())){
@@ -201,8 +214,15 @@ public class CmsProcessBase {
 						e.printStackTrace();
 					}
 				}else if(List.class.isAssignableFrom(f.getType())){
-					System.out.println(val.toString());
+				
 					f.set(obj, val.toString());
+				}else if(Date.class.isAssignableFrom(f.getType())){
+					
+					if(column.defaultData()==ColumnWSL.DefaultData.DATE_NOW){
+						f.set(obj, new Date());
+					}else{
+						f.set(obj, parseDate(val));
+					}
 				}else{
 					f.set(obj, val);
 				}
@@ -218,6 +238,24 @@ public class CmsProcessBase {
 			return obj;
 			
 		}
+	
+	private Date parseDate(String strDate){
+		if(strDate==null){
+			return null;
+		}
+		
+		 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		 Date time=null;
+		try {
+			time = formatter.parse(strDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		formatter=null;
+		
+		return time;
+	}
 /**
  * 通过request获得查询对象，对象类型通过class获得，
  * 这个对象用于列表筛选
@@ -328,6 +366,7 @@ public UpFile[] upload(HttpServletRequest request,String FieldName,String basePa
 		}
 		
 //	}
+		
 	
 	return files;
 }
@@ -384,9 +423,54 @@ byte[] bytes;
     upFile.setFile(f);
     upFile.setSavePath(outPath);
     
+    if(fileUploadProcess!=null){
+		fileUploadProcess.uploadFile(upFile);
+	}
 	
     return upFile;
     
+  
+}
+
+
+/**
+ * remove file
+ * @param request
+ * @param basePath
+ * @param fileDataPath
+ * @throws IOException
+ */
+public void remove(HttpServletRequest request,String basePath,String fileDataPath) throws IOException{
+	
+	String realpath=request.getSession().getServletContext().getRealPath("/");
+	   
+	   if(basePath!=null&&basePath.startsWith("/")){
+
+		   realpath=basePath;
+	   }else if(basePath!=null&&basePath.indexOf(":")!=-1){
+
+		   realpath=basePath;
+	   }else{
+		   realpath+="/"+basePath;
+	   }
+	   
+	
+
+  String savepath=realpath+File.separator+fileDataPath;
+  
+   File f=new File(savepath);
+
+   f.delete();
+   f=null;
+   realpath=null;
+   savepath=null;
+   
+   if(this.fileUploadProcess!=null){
+	   UpFile uf=new UpFile();
+	   uf.setFile(f);
+	   uf.setSavePath(fileDataPath);
+	   fileUploadProcess.removeFile(uf);
+   }
   
 }
 
@@ -426,6 +510,19 @@ public List<ViewTitle> getListTable() {
 
 public void setListTable(List<ViewTitle> listTable) {
 	this.listTable = listTable;
+}
+
+@Override
+public void process(HttpServletRequest request, HttpServletResponse response,
+		ModelMap modelMap, Class<Object> classobj) throws WSLCmsException {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void setFileUploadProcess(FileUploadProcess fileUploadProcess) {
+	this.fileUploadProcess= fileUploadProcess;
+	
 }
 
 

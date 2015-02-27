@@ -7,14 +7,18 @@ import org.hibernate.SessionFactory;
 import org.springframework.ui.ModelMap;
 
 import com.weisiliang.cms.exception.WSLCmsException;
+import com.weisiliang.cms.inter.FileUploadProcess;
 
 public interface CmsProcess {
 	
 //	@Autowired
-	SessionFactory sessionFactory=null;
+//	SessionFactory sessionFactory=null;
 	
 	public void setSessionFactory(SessionFactory sessionFactory);
 	
 	public void process(HttpServletRequest request,
 			HttpServletResponse response, ModelMap modelMap,Class<Object> classobj)  throws WSLCmsException;
+	
+	public void setFileUploadProcess(FileUploadProcess fileUploadPorcess);
+	
 }

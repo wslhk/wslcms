@@ -26,8 +26,11 @@ import org.springframework.ui.ModelMap;
 
 
 
+
+
 import com.weisiliang.cms.annotation.TableWSL;
 import com.weisiliang.cms.exception.WSLCmsException;
+import com.weisiliang.cms.inter.FileUploadProcess;
 import com.weisiliang.cms.process.CmsProcess;
 import com.weisiliang.cms.view.ViewTitle;
 
@@ -47,6 +50,9 @@ public class CmsFactoryImpl implements CmsFactory {
 	
 	static Map<String,Class<Object>> entityMap;
 	
+	//自定义上传方法
+	FileUploadProcess uploadProcess;
+	
 	public CmsFactoryImpl(){
 //		this.initBySessionFactory();
 	}
@@ -55,6 +61,8 @@ public class CmsFactoryImpl implements CmsFactory {
 //		this.initBySessionFactory();
 		
 	}
+	
+	
 	
 	
 	
@@ -166,6 +174,7 @@ public class CmsFactoryImpl implements CmsFactory {
 
 		
 			currentProcess=this.getProcess(request, action);
+			currentProcess.setFileUploadProcess(this.uploadProcess);
 			currentProcess.process(request, response, modelMap, this.getEntityClass(request,wslobj));
 			
 			modelMap.put("wslobj", wslobj);
@@ -243,6 +252,11 @@ public class CmsFactoryImpl implements CmsFactory {
         }
         return sb.toString();
     }
+	@Override
+	public void setFileUploadProcess(FileUploadProcess uploadProcess) {
+		this.uploadProcess=uploadProcess;
+		
+	}
 	
 	
 	

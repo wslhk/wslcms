@@ -1,6 +1,7 @@
 package com.weisiliang.cms.process;
 
 import java.lang.reflect.Field;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,7 +47,14 @@ public class CmsProcessAddDo extends CmsProcessBase implements CmsProcess{
 					fieldsearch=obj.getClass().getDeclaredField(fieldsrc.getName());
 					fieldsrc.setAccessible(true);
 					fieldsearch.setAccessible(true);
+					
+					if(fieldsrc.getAnnotation(ColumnWSL.class).defaultData()==ColumnWSL.DefaultData.DATE_NOW){
+						fieldsrc.set(respObj, new Date());
+						continue;
+					}
+					
 					if(fieldsearch.get(obj)!=null){
+						
 						fieldsrc.set(respObj, fieldsearch.get(obj));
 					}
 

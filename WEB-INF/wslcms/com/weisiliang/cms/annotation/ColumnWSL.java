@@ -19,7 +19,13 @@ public @interface ColumnWSL{
 	
 	  public enum ORDERBY {
 	        ASC,DESC,NONE;
-	    }
+	   }
+	  
+	  public enum DefaultData {
+	       NORMAL,
+		  DATE_NOW,	//new Date()
+	        STRING_NOT_NULL;//""
+	   }
 //	  static public enum INPUT_TYPE{
 //		  TEXT,FILE,SELECT,CHECKBOX,RADIO,TEXTAREA,SHOW
 //	  }
@@ -50,6 +56,8 @@ public @interface ColumnWSL{
 	  
 	  //是否允许批量修改
 	  boolean batchUpdate() default false;
+	  
+	  DefaultData defaultData() default DefaultData.NORMAL;
 
 	  
 }

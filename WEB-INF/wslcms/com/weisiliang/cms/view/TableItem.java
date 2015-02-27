@@ -1,11 +1,22 @@
 package com.weisiliang.cms.view;
 
 import java.lang.reflect.Field;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
+
+
+
+
 import javax.persistence.GeneratedValue;
+
+
+
+
 
 
 import org.hibernate.HibernateException;
@@ -133,11 +144,19 @@ public class TableItem {
 						}
 					}
 					
+					args=null;
+					
 				}else{
 					
 //					this.itemType=ITEM_TYPE.TEXT.toString();
 				}
-				
+				if(Date.class.isAssignableFrom(field.getType())){
+					DateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					  String reTime = format2.format(field.get(obj));
+					  format2=null;
+					value=reTime;
+					return;
+				}
 				value=field.get(obj)==null?"":field.get(obj).toString();
 			} catch (Exception e) {
 		

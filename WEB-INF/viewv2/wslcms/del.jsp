@@ -90,8 +90,8 @@ ul.pagination{ margin:0;}
  </c:forEach>
                 </tbody>
               </table>
-              </form>
-            </div>
+              
+            
             <!-- /.table-responsive -->
             <div class="row">
       <div class="col-sm-6">
@@ -101,6 +101,8 @@ ul.pagination{ margin:0;}
       <div class="col-sm-6">
        
       </div>
+    </div>
+    </form>
     </div>
           </div>
           <!-- /.panel-body --> 
@@ -145,33 +147,7 @@ ul.pagination{ margin:0;}
 
 
 
- 确认删除这些内容？
- <form method="post" action="?wslact=del_do">
- <input type="hidden" name="referer" value="${referer}"/>
- <input type="hidden" name="wslobj" value="${wslobj}"/>
-<table border="1">
-<tr>
-	<c:forEach items="${wslTableList.columns}" var="formItem">
 
-       	<th> ${formItem.title}</th>
-
-    </c:forEach>
-</tr>
-<c:forEach items="${wslTableList.lines}" var="line">
-<input type="hidden" name="${line.objId.column}[]" value="${line.objId.value}"/>
-<tr>
-       	<c:forEach items="${line.items}" var="item">
-       	<td> ${item.value}</td>
-
- </c:forEach>
- </tr>
- </c:forEach>
-
-</table>
-
-<input type="submit" value="确认"/>
-<input type="button" onClick="history.go(-1);" value="返回"/>
-</form>
 </body>
 </html>
 
